@@ -3,7 +3,7 @@ name: Back end CI-CD workflows
 on:
   pull_request:
   push:
-    branches: [develop, main,'feature/']
+    branches: [develop, main]
 
 jobs:
   build_test:

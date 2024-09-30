@@ -1,9 +1,10 @@
 name: Back end CI-CD workflows
 
 on:
-  pull_request:
   push:
-    branches: [develop, main]
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build_test:

@@ -1,10 +1,10 @@
-name: Back end CI-CD workflows
+name: Back end CI-CD test
 
 on:
   push:
-    branches: [main]
+    branches: main
   pull_request:
-    branches: [main]
+    branches: main
 
 jobs:
   build_test:

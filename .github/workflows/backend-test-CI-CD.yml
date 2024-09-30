@@ -1,10 +1,9 @@
 name: Back end CI-CD test
 
 on:
-  push:
-    branches: main
   pull_request:
-    branches: main
+  push:
+    branches: [main,develop]
 
 jobs:
   build_test:

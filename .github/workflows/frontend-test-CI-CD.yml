@@ -1,0 +1,33 @@
+name: Front end CI-CD test
+
+on:
+  pull_request:
+  push:
+    branches: [main,develop]
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install depedencies
+        run: npm install
+        working-directory: ./front
+        
+      - name: Generate test with coverage report
+        run: npm run test --code-coverage
+        working-directory: ./front
+        
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: front/coverage/
+    

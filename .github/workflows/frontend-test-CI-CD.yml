@@ -49,9 +49,10 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
           
-      - name: Build and analyze
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ./front
         env:
-          SONAR_TOKEN: ${{ secrets.TOKEN_SONARQUBE_BOBAPP_FRONT }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bobapp_front -Dsonar.projectName='bobapp_front'
-            
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+            SONAR_TOKEN: ${{ secrets.SONARCLOUD_SECRET_TOKEN }}

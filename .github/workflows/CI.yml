@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+jobs:
+  build_test_analyze_with_sonar:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install frontend dependencies and run tests
+        working-directory: ./front
+        run: npm install && npm test -- --watch=false --code-coverage --browsers=ChromeHeadlessCI
+
+      - name: Build and verify backend with Maven
+        working-directory: ./back
+        run: mvn verify
+        
+      - name: Commit and push coverage reports
+        env:
+          PAT: ${{ secrets.PAT }}
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git remote set-url origin https://github.com/Axel-Ha/Projet-7-OpenClassroom.git
+          git add -f ./front/coverage/bobapp/lcov.info
+          git add -f ./back/target/site/jacoco/jacoco.xml
+          git commit -m "Add coverage reports [skip ci]"
+          git push https://x-access-token:${{ secrets.PAT }}@github.com:Axel-Ha/Projet-7-OpenClassroom.git HEAD:main
+        
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=axel-ha_bobapp-front
+            -Dsonar.organization=axel-ha
+            -X
+        

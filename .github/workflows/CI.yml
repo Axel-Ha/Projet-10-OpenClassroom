@@ -38,19 +38,25 @@ jobs:
         with:
           node-version: '18'
           
-      # - name: Install frontend dependencies and run tests
-      #   working-directory: ./front
-      #   run: npm install && npm run test -- --code-coverage --browsers=ChromeHeadless --watch=false
+      - name: Install frontend dependencies and run tests
+        working-directory: ./front
+        run: npm install && npm run test -- --code-coverage --browsers=ChromeHeadless --watch=false
+
+      # - name: Upload coverage report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage-report
+      #     path: front/coverage/bobapp 
 
       - name: Build and verify backend with Maven
         working-directory: ./back
         run: mvn verify
 
-      - name: Upload Jacoco report
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-code-coverage-report
-          path: back/target/site/jacoco
+      # - name: Upload Jacoco report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: jacoco-code-coverage-report
+      #     path: back/target/site/jacoco
           
       - name: Commit and push coverage reports
         env:

@@ -9,6 +9,15 @@ jobs:
   build_test_analyze_with_sonar:
     runs-on: ubuntu-latest
     
+    services:
+      docker:
+        image: docker:19.03.12
+        options: --privileged
+        ports:
+          - 2375:2375
+        env:
+          DOCKER_TLS_CERTDIR: ""
+          
     steps:
       - name: checkout code
         uses: actions/checkout@v4
@@ -62,7 +71,9 @@ jobs:
           # git add -f ./front/coverage/bobapp/lcov.info
           git add -f ./back/target/site/jacoco/jacoco.xml
           git commit -m "Add coverage reports [skip ci]"
-          git push https://x-access-token:${{ secrets.PAT }}@github.com:Axel-Ha/Projet-7-OpenClassroom.git HEAD:main
+          git push https://x-access-token:${{ secrets.PAT }}@github.com/Axel-Ha/Projet-7-OpenClassroom.git HEAD:main
+
+
         
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master

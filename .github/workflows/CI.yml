@@ -72,8 +72,6 @@ jobs:
           git add -f ./back/target/site/jacoco/jacoco.xml
           git commit -m "Add coverage reports [skip ci]"
           git push https://x-access-token:${{ secrets.PAT }}@github.com/Axel-Ha/Projet-7-OpenClassroom.git HEAD:main
-
-
         
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master

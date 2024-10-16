@@ -31,7 +31,7 @@ jobs:
           
       - name: Push Docker images
         run: |
-          docker tag bobapp-backend ${{ vars.DOCKER_USERNAME }}/bobapp-backend:latest
-          docker tag bobapp-frontend ${{ vars.DOCKER_USERNAME }}/bobapp-frontend:latest
-          docker push ${{ vars.DOCKER_USERNAME }}/bobapp-backend:latest
-          docker push ${{ vars.DOCKER_USERNAME }}/bobapp-frontend:latest
+          # docker tag bobapp-backend ${{ vars.DOCKERHUB_USERNAME }}/bobapp-backend:latest
+          # docker tag bobapp-frontend ${{ vars.DOCKERHUB_USERNAME }}/bobapp-frontend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/bobapp-backend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/bobapp-frontend:latest

@@ -6,7 +6,7 @@ on:
     branches: [main, develop]
     
 jobs:
-  build:
+  build_and_push_docker_image:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -17,18 +17,18 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
+          
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
       - name: Build Docker images
         run: |
           docker build -t bobapp-backend ./back
           docker build -t bobapp-frontend ./front
           
-      - name: Login to Docker Hub
-        env:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      
       - name: Push Docker images
         run: |
           docker tag bobapp-backend ${{ secrets.DOCKER_USERNAME }}/bobapp-backend:latest

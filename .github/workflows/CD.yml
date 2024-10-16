@@ -1,0 +1,37 @@
+name: CD
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Docker images
+        run: |
+          docker build -t bobapp-backend ./back
+          docker build -t bobapp-frontend ./front
+          
+      - name: Login to Docker Hub
+        env:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      
+      - name: Push Docker images
+        run: |
+          docker tag bobapp-backend ${{ secrets.DOCKER_USERNAME }}/bobapp-backend:latest
+          docker tag bobapp-frontend ${{ secrets.DOCKER_USERNAME }}/bobapp-frontend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/bobapp-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/bobapp-frontend:latest

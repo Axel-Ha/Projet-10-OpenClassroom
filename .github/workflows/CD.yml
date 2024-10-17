@@ -26,8 +26,8 @@ jobs:
           
       - name: Build Docker images
         run: |
-          docker build -t bobapp-backend ./back
-          docker build -t bobapp-frontend ./front
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-backend ./back
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-frontend ./front
           
       - name: Push Docker images
         run: |

@@ -78,6 +78,6 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=axel-ha_bobapp-front
+            -Dsonar.projectKey=axel-ha_bobapp
             -Dsonar.organization=axel-ha
             -X

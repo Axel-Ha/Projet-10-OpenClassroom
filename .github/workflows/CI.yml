@@ -46,17 +46,17 @@ jobs:
         working-directory: ./back
         run: mvn verify
         
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: ./front/coverage/
+      # - name: Upload coverage report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage-report
+      #     path: ./front/coverage/
           
-      - name: Upload JaCoCo report
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: ./back/target/site/jacoco
+      # - name: Upload JaCoCo report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: jacoco-report
+      #     path: ./back/target/site/jacoco
           
       - name: Commit and push coverage reports
         env:
@@ -65,7 +65,7 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git remote set-url origin https://github.com/Axel-Ha/Projet-7-OpenClassroom.git
-          git add -f ./front/coverage/bobapp/lcov.info
+          git add -f ./front/coverage/bobapp/
           git add -f ./back/target/site/jacoco/jacoco.xml
           git commit -m "Add coverage reports [skip ci]"
           git push https://x-access-token:${{ secrets.PAT }}@github.com/Axel-Ha/Projet-7-OpenClassroom.git HEAD:main

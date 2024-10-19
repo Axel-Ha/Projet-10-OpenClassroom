@@ -80,3 +80,4 @@ jobs:
             -Dsonar.projectKey=axel-ha_bobapp
             -Dsonar.organization=axel-ha
             -X
+

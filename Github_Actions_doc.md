@@ -16,9 +16,21 @@ Ce document a pour objectif de détailler chaque étape des GitHub Actions, de p
 Fichier: `CI.yml`  
 Emplacement: `.github/workflows`
 
-### Déclenchement du workflow
+### Déclenchement du workflow 
+``` yaml
+on:
+  pull_request:
+  push:
+    paths:
+      - 'front/**'
+      - 'back/**'
+      - '.github/workflows/**'
+    branches: [main]
+```
 - **Push** sur les chemins `front/**`, `back/**` et `.github/workflows/**` dans la branche main.
 - **Pull request** sur les chemins `front/**`, `back/**` et `.github/workflows/**` dans la branche main.
+
+**Objectifs**: Préciser comment le workflow va se déclencher en spécifiant le chemin et la branche du projet.
 
 ### Jobs
 1. **`build_test_and_analyze`**
@@ -26,7 +38,14 @@ Emplacement: `.github/workflows`
 **Objectifs**: Builder le backend ainsi que le frontend, exécuter les tests, générer le rapport de couverture et analyser la qualité du code avec SonarCloud.
 
 ### Etapes:
-1.1. **Checkout code**
+
+1.1. **Set up environment**
+``` yaml
+  runs-on: ubuntu-latest
+```
+**Objectifs**:Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
+
+1.2. **Checkout code**
 ``` yaml
 - name: Checkout code
   uses: actions/checkout@v4
@@ -34,7 +53,7 @@ Emplacement: `.github/workflows`
 **Objectif**: Récupération du code source du repository.
 ___
 
-1.2. **Set up JDK 17**
+1.3. **Set up JDK 17**
 ``` yaml
 - name: Set up JDK 17
   uses: actions/setup-java@v4
@@ -45,7 +64,7 @@ ___
 **Objectif**: Installer JDK 17, qui sera nécessaire pour la compilation du code et l'exécution des tests.
 ___
 
-1.3. **Cache Maven packages**
+1.4. **Cache Maven packages**
 ``` yaml
 - name: Cache Maven packages
   uses: actions/cache@v4
@@ -57,7 +76,7 @@ ___
 **Objectif**: Mise en cache des dépendances Maven pour accélérer le build.
 ___
 
-1.4. **Set up Node.js**
+1.5. **Set up Node.js**
 ``` yaml
 - name: Set up Node.js
   uses: actions/setup-node@v4
@@ -67,7 +86,7 @@ ___
 **Objectif**: Installation de Node.js, qui sera nécessaire pour le build du frontend.
 ___
 
-1.5. **Cache Node.js modules**
+1.6. **Cache Node.js modules**
 ``` yaml
 - name: Cache Node.js modules
   uses: actions/cache@v4
@@ -80,7 +99,7 @@ ___
 **Objectif**: Mise en cache des modules Node.js pour accélérer les installations.
 ___
 
-1.6. **Install frontend dependencies and run tests**
+1.7. **Install frontend dependencies and run tests**
 ``` yaml
 - name: Install frontend dependencies and run tests
   run: npm install && npm run test -- --code-coverage --browsers=ChromeHeadless --watch=false
@@ -88,7 +107,7 @@ ___
 **Objectif**: Installation des dépendances, éxécution des tests et génération d'un rapport de couverture.
 ___
 
-1.7. **Build and verify backend with Maven**
+1.8. **Build and verify backend with Maven**
 ``` yaml
 - name: Build and verify backend with Maven
   run: mvn verify
@@ -96,7 +115,7 @@ ___
 **Objectif**: Compilation du backend et éxécution des tests et génération d'un rapport de couverture.
 ___
 
-1.8. **Commit and push coverage reports**
+1.9. **Commit and push coverage reports**
 ``` yaml
 - name: Commit and push coverage reports
   env:
@@ -113,7 +132,7 @@ ___
 **Objectif**: Sauvegarder et envoyer les rapports de couverture de code générés durant les tests au dépôt Git.
 ___
 
-1.9 **Cache SonarQube packages**
+1.10 **Cache SonarQube packages**
 ``` yaml
 - name: Cache SonarQube packages
   uses: actions/cache@v4
@@ -125,7 +144,7 @@ ___
 **Objectif**: Mise en cache des paquets SonarQube pour optimiser le temps d'exécution des analyses.
 ___
 
-1.10 **Analyze with SonarCloud**
+1.11 **Analyze with SonarCloud**
 ``` yaml
 - name: Analyze with SonarCloud
   with:
@@ -142,18 +161,36 @@ ___
 Fichier: `CD.yml`  
 Emplacement: `.github/workflows`
 
-### Déclenchement du workflow
+### Déclenchement du workflow 
+``` yaml
+on:
+  pull_request:
+  push:
+    paths:
+      - 'front/**'
+      - 'back/**'
+      - '.github/workflows/**'
+    branches: [main]
+```
 - **Push** sur les chemins `front/**`, `back/**` et `.github/workflows/**` dans la branche main.
 - **Pull request** sur les chemins `front/**`, `back/**` et `.github/workflows/**` dans la branche main.
 
+**Objectifs**: Préciser comment le workflow va se déclencher en spécifiant le chemin et la branche du projet.
+
 ### Jobs
-1. **`build_and_push_docker_image`**
+1. **`build_test_and_analyze`**
 
-**Objectifs**: Builder les images Docker du backend et du frontend, puis les pousser sur Docker Hub afin d'automatiser le déploiement à partir des modifications effectuées.
-
+**Objectifs**: Builder le backend ainsi que le frontend, exécuter les tests, générer le rapport de couverture et analyser la qualité du code avec SonarCloud.
 
 ### Etapes:
-1.1. **Checkout code**
+
+1.1. **Set up environment**
+``` yaml
+  runs-on: ubuntu-latest
+```
+**Objectifs**:Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
+
+1.2. **Checkout code**
 ``` yaml
 - name: Checkout code
   uses: actions/checkout@v4
@@ -161,7 +198,7 @@ Emplacement: `.github/workflows`
 **Objectif**: Récupération du code source pour la construction de l'image Docker.
 ___
 
-1.2. **Set up JDK 17**
+1.3. **Set up JDK 17**
 ``` yaml
 - name: Set up JDK 17
   uses: actions/setup-java@v4
@@ -172,7 +209,7 @@ ___
 **Objectif**: Installer JDK 17, qui sera nécessaire pour la compilation du code et l'exécution des tests.
 ___
 
-1.3. **Login to Docker Hub**
+1.4. **Login to Docker Hub**
 ``` yaml
 - name: Login to Docker Hub
   uses: docker/login-action@v3
@@ -184,7 +221,7 @@ ___
 **Objectif**: Authentification à Docker Hub pour permettre le déploiement de l'image Docker.
 ___
 
-1.4. **Build Docker images**
+1.5. **Build Docker images**
 ``` yaml
 - name: Build Docker images
   run: |
@@ -195,7 +232,7 @@ ___
 **Objectif**: Construire les images Docker pour le backend et le frontend.
 ___
 
-1.5. **Push Docker images**
+1.6. **Push Docker images**
 ``` yaml
 - name: Push Docker images
   run: |

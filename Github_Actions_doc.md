@@ -195,7 +195,7 @@ on:
 - name: Checkout code
   uses: actions/checkout@v4
 ```
-**Objectif**: Récupération du code source pour la construction de l'image Docker.
+**Objectif**: Récupérer le code source pour la construction et le déploiement des images Docker.
 ___
 
 1.3. **Set up JDK 17**
@@ -206,7 +206,7 @@ ___
     java-version: '17'
     distribution: 'temurin'
 ```
-**Objectif**: Installer JDK 17, qui sera nécessaire pour la compilation du code et l'exécution des tests.
+**Objectif**: Installer JDK 17, nécessaire pour compiler le code Java et garantir le bon fonctionnement de l’application dans les images Docker.
 ___
 
 1.4. **Login to Docker Hub**

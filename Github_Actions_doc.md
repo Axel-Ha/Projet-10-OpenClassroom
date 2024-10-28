@@ -310,7 +310,7 @@ Il est crucial d'améliorer la couverture de test et de résoudre les problèmes
 
 #### Frontend:  
 La couverture de code du front end est très bonne avec un pourcentage de **83.33%**. Ce qui signifie qu'une large portion du code est testée. Le seuil recommandé (80%) a été dépassé. 
-Ces résultats indiquent que le frontend est bien testé, réduisant ainsi les risques de bugs en production. Attention à bien rester au-dessus du seuil lors de l'ajout de nouveauté pour eviter toute présence de bug. 
+Ces résultats indiquent que le frontend est bien testé, réduisant ainsi les risques de bugs en production. Attention à bien rester au-dessus du seuil lors de l'ajout de nouveauté pour éviter  toute présence de bug. 
 L'analyse de SonarCloud nous offre, pour le frontend, des évaluations **A** pour la sécurité, la fiabilité et la maintenabilité. 
 Cette analyse nous montre que le code du frontend est bien structuré et sécurisé, mais aussi très fiable, par l'absence de bugs critiques.
 Malgré ces bons résultats, il serait quand même préférable d'implémenter des tests sur les fonctions afin d'éviter tout potentiel bug.
@@ -334,11 +334,11 @@ ___
 #BobApp j'ai remonté un bug sur le post de vidéo il y a deux semaines et il est encore présent ! Les devs vous faites quoi ????
 ```
 **Problème:** Signalement d'un bug sur le post de vidéo, mais cette fonctionnalité n'existe pas dans l'application.  
-**Action:** Comme pour précédent le commentaire, Nous pourrions réfléchir à introduire cette fonctionnalité dans les futures versions de l'application pour répondre à la demande des utilisateurs.
+**Action:** Comme pour le précédent commentaire, nous pourrions réfléchir à introduire cette fonctionnalité dans les futures versions de l'application pour répondre à la demande des utilisateurs.
 ___
 ```
 ★☆☆☆☆  
-Ca fait une semaine que je ne reçois plus rien, j'ai envoyé un email il y a 5 jours mais toujours pas de nouvelles...
+Ça fait une semaine que je ne reçois plus rien, j'ai envoyé un email il y a 5 jours mais toujours pas de nouvelles...
 ```
 **Problème:** L'utilisateur ne reçoit pas de réponse à leur demande d'assistance par email.  
 **Action:**  Améliorer la réactivité du support en proposant un suivi des demandes sous forme de GitHub Issues pour une gestion plus efficace des problèmes.  

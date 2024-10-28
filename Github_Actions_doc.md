@@ -178,9 +178,9 @@ on:
 **Objectifs**: Préciser comment le workflow va se déclencher en spécifiant le chemin et la branche du projet.
 
 ### Jobs
-1. **`build_test_and_analyze`**
+1. **`build_and_push_docker_image`**
 
-**Objectifs**: Builder le backend ainsi que le frontend, exécuter les tests, générer le rapport de couverture et analyser la qualité du code avec SonarCloud.
+**Objectifs**: Builder et déployer une image Docker du backend et frontend sur DockerHub.
 
 ### Etapes:
 

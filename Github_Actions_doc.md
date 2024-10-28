@@ -43,7 +43,7 @@ on:
 ``` yaml
   runs-on: ubuntu-latest
 ```
-**Objectifs**:Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
+**Objectifs**: Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
 
 1.2. **Checkout code**
 ``` yaml
@@ -188,7 +188,7 @@ on:
 ``` yaml
   runs-on: ubuntu-latest
 ```
-**Objectifs**:Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
+**Objectifs**: Indique le système d'exploitation de l'environnement virtuel dans lequel le job sera exécuté.
 
 1.2. **Checkout code**
 ``` yaml

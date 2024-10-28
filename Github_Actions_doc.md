@@ -266,7 +266,7 @@ Cette note permet d'indiquer qu'aucun nouveau bug critique n'a été introduit d
 
 Ce KPI consiste à mesurer la sécurité du code en fonction des vulnérabilités détectées par SonarQube. Comme pour la fiabilité, la sécurité est notée de A à E, A étant la meilleure note.
 
-Le seuil minimum que je recommande pour KPI est **A**.
+Le seuil minimum que je recommande pour ce KPI est **A**.
 
 Ce score permet de confirmer qu'aucune vulnérabilité critique n'a été introduite dans le code. Assurer un niveau de sécurité élevé est crucial pour protéger les données des utilisateurs et éviter les failles qui pourraient entraîner des dommages significatifs à l'intégrité de l'application et à la confiance des utilisateurs.
 
@@ -274,7 +274,7 @@ Ce score permet de confirmer qu'aucune vulnérabilité critique n'a été introd
 
 Ce KPI consiste à évaluer la maintenabilité du code en fonction de la dette technique identifiée par SonarQube. La dette technique inclut des aspects tels que la complexité cyclomatique, les duplications de code et la structure générale du code. Les notes vont de A à E, où A est la meilleure note.
 
-Le seuil minimum que je recommande pour KPI est **A**.
+Le seuil minimum que je recommande pour ce KPI est **A**.
 
 Ce seuil permet d'indiquer que le code est bien structuré, facile à comprendre et à maintenir. Cela est essentiel pour permettre des évolutions rapides et éviter des coûts élevés de maintenance sur le long terme.
 

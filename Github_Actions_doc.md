@@ -245,7 +245,7 @@ ___
 ## 4. Proposition de KPIs
 Pour garantir l'amélioration continue de la qualité de BobApp, je propose 4 KPIs critiques. Ces KPIs permettront de suivre et d'évaluer l'efficacité des tests, la sécurité, la maintenabilité et la fiabilité du code au fur et à mesure de son développement.  
 
-1. **Couverture de code par les tests (Code coverage): 80%**
+1. **Couverture de code par les tests (Code coverage)**
 
 Ce KPI consiste à mesurer le pourcentage de code source couvert par les tests automatisés. Une couverture élevée permettra de garantir que la majorité du code a été testée, ce qui permet de réduire les risques de bugs en production.
 
@@ -254,7 +254,7 @@ Le seuil minimum que je recommande pour ce KPI est de **80%**.
 Ce pourcentage permet d'assurer que la majorité du code a été testée, mais il laisse également une certaine marge de flexibilité.  
 Ce seuil est aligné sur les standards de qualité Sonar Way proposés par SonarQube. Il offre un bon équilibre entre l'effort déployé pour l'implémentation des tests et la détection des problèmes potentiels.
 
-2. **Evaluation de la fiabilité du code (Reliability Rating): A**
+2. **Evaluation de la fiabilité du code (Reliability Rating)**
 
 Ce KPI consiste à évaluer la fiabilité du code en fonction des bugs détectés. Ils sont classés en fonction de leur sévérité par SonarQube, grâce à une note qui va de A (la meilleure note) à E (la pire note).
 
@@ -262,7 +262,7 @@ Le seuil minimum que je recommande pour ce KPI est **A**.
 
 Cette note permet d'indiquer qu'aucun nouveau bug critique n'a été introduit dans le code ajouté. Cela est essentiel pour maintenir la stabilité de l'application et éviter des régressions qui pourraient nuire à l'expérience utilisateur.
 
-3. **Evaluation de la sécurité du code (Security Rating): A**
+3. **Evaluation de la sécurité du code (Security Rating)**
 
 Ce KPI consiste à mesurer la sécurité du code en fonction des vulnérabilités détectées par SonarQube. Comme pour la fiabilité, la sécurité est notée de A à E, A étant la meilleure note.
 
@@ -270,7 +270,7 @@ Le seuil minimum que je recommande pour ce KPI est **A**.
 
 Ce score permet de confirmer qu'aucune vulnérabilité critique n'a été introduite dans le code. Assurer un niveau de sécurité élevé est crucial pour protéger les données des utilisateurs et éviter les failles qui pourraient entraîner des dommages significatifs à l'intégrité de l'application et à la confiance des utilisateurs.
 
-4. **Evaluation de la maintenabilité du code (Maintainability Rating): A**
+4. **Evaluation de la maintenabilité du code (Maintainability Rating)**
 
 Ce KPI consiste à évaluer la maintenabilité du code en fonction de la dette technique identifiée par SonarQube. La dette technique inclut des aspects tels que la complexité cyclomatique, les duplications de code et la structure générale du code. Les notes vont de A à E, où A est la meilleure note.
 
